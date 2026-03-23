@@ -1,0 +1,14 @@
+{
+  "session_id": "2ad9ece0-1c4b-4fa4-b061-30673b59cffd",
+  "started_at": "2026-03-23T14:52:06.819012+00:00",
+  "ended_at": "2026-03-23T14:58:18.318764+00:00",
+  "status": "crashed",
+  "project": "global",
+  "git_head": null,
+  "git_branch": null,
+  "facts_created": 0,
+  "decisions_created": 0,
+  "mistakes_created": 0,
+  "checkpoints": [],
+  "last_tool_call": "2026-03-23T14:52:06.819012+00:00"
+}
