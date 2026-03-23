@@ -1,0 +1,14 @@
+{
+  "session_id": "7f67a2e8-76ed-485a-9d9c-df00a465dee2",
+  "started_at": "2026-03-23T17:11:14.012486+00:00",
+  "ended_at": "2026-03-23T21:27:30.903011+00:00",
+  "status": "completed",
+  "project": "global",
+  "git_head": null,
+  "git_branch": null,
+  "facts_created": 24,
+  "decisions_created": 6,
+  "mistakes_created": 0,
+  "checkpoints": [],
+  "last_tool_call": "2026-03-23T21:27:30.751287+00:00"
+}
