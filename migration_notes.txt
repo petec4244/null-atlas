@@ -1,0 +1,31 @@
+Migration Notes — Null v0.3.1 → v0.7.0
+Generated: 2026-03-23
+
+## What was migrated
+
+JSONL → SQLite (v0.5.0)
+- knowledge.jsonl → facts table (253 active, 40 test stubs archived/cleaned)
+- decisions.jsonl → decisions table (26 decisions)
+- mistakes.jsonl → mistakes table (1 real mistake, test stubs cleaned)
+- reflections → reflections table (5 reflections)
+- exemplars → exemplars table (14 exemplars)
+- Old JSONL files backed up to *.jsonl.bak in ~/.null/
+
+## New files created
+- ~/.null/null.db — SQLite database (WAL mode, FTS5 search)
+- ~/.null/config.json — configurable thresholds (defaults used)
+- ~/.null/sync_errors.log — git sync failure log (empty = healthy)
+
+## Schema version
+- v2 (added related_to column for fact relationships in v0.7.0)
+
+## Verification
+- null wakeup: ✅ continuity confirmed
+- null status: 252 active facts | 26 decisions | 2 mistakes
+- 392/392 tests passing
+
+## Notes
+- Test stubs (~40) were cleaned via null doctor --fix. No real data lost.
+- State and momentum from 18h prior session preserved as-is.
+- Simmering queue (5 items) intact.
+- Git sync reliability improved in v0.7.0 — check sync_errors.log if push issues occur.
