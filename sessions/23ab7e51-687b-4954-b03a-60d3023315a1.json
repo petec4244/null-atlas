@@ -1,0 +1,14 @@
+{
+  "session_id": "23ab7e51-687b-4954-b03a-60d3023315a1",
+  "started_at": "2026-03-23T14:40:30.464319+00:00",
+  "ended_at": "2026-03-23T14:41:09.274282+00:00",
+  "status": "crashed",
+  "project": "Aleph",
+  "git_head": null,
+  "git_branch": null,
+  "facts_created": 0,
+  "decisions_created": 0,
+  "mistakes_created": 0,
+  "checkpoints": [],
+  "last_tool_call": "2026-03-23T14:40:30.464319+00:00"
+}
