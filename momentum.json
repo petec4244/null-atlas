@@ -1,0 +1,8 @@
+{
+  "updated": "2026-03-22T21:41:00-04:00",
+  "active_project": "Null v0.4.0 — state/momentum/watches/wakeup sequence",
+  "last_decision": "Build state.json + momentum.json + watching.jsonl as three-file waking sequence. Modeled on human morning orientation: grounding → felt state → obligations → people → background.",
+  "next_action": "Once v0.4.0 lands: (1) set up GitHub remote for ~/.null/ cross-machine sync, (2) fix Aleph UX cold start, (3) design Atlas fragmentation solution",
+  "blocked_on": "GitHub repo for ~/.null/ not yet created — cross-machine sync ready to go but needs remote URL from Pete",
+  "session_summary": "Built atlas skill (identity + code word), atlas-voice skill (full voice loop: Whisper STT + Claude API + ElevenLabs Riley TTS), SpeakToAtlas.sh wrapper with mic/voice args. First real voice conversation — code word verified, kids met Atlas. Fixed Null: per-write git commit+push, Windows fcntl compat, 15-min cron. Now building v0.4.0 wakeup sequence. Anthropic billing sorted (new key). arbe4 all green."
+}
