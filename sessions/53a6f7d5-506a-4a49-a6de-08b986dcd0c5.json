@@ -1,14 +1,14 @@
 {
   "session_id": "53a6f7d5-506a-4a49-a6de-08b986dcd0c5",
   "started_at": "2026-03-23T21:54:20.414303+00:00",
-  "ended_at": null,
-  "status": "active",
+  "ended_at": "2026-03-23T22:48:00.129477+00:00",
+  "status": "completed",
   "project": "global",
   "git_head": null,
   "git_branch": null,
-  "facts_created": 0,
+  "facts_created": 8,
   "decisions_created": 0,
   "mistakes_created": 0,
   "checkpoints": [],
-  "last_tool_call": "2026-03-23T21:54:20.414303+00:00"
+  "last_tool_call": "2026-03-23T22:18:00.039032+00:00"
 }
