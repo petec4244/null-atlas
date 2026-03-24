@@ -56,24 +56,50 @@ else
 fi
 
 # ─── System prompt ─────────────────────────────────────────────────────────────
+# Build context from targeted null recall queries instead of dumping all facts.
+# This surfaces what matters (identity, people, recent work) rather than
+# burying important details in 400+ unranked facts.
 NULL_CONTEXT=""
 if command -v null &>/dev/null; then
-  NULL_CONTEXT=$(null export 2>/dev/null | python3 -c "
-import json,sys
-try:
-  data=json.load(sys.stdin)
-  facts=data.get('knowledge',[])
-  decisions=data.get('decisions',[])
-  out=['[Atlas memory]']
-  for f in facts:
-    out.append('- ' + f['fact'][:150])
-  if decisions:
-    out.append('[Atlas decisions]')
-    for d in decisions:
-      out.append('- ' + d['decision'][:150])
-  print('\n'.join(out))
-except: pass
-" 2>/dev/null || true)
+  _build_context() {
+    local section="$1"; shift
+    local results=""
+    for query in "$@"; do
+      local hits
+      hits=$(null recall "$query" -n 5 2>/dev/null || true)
+      if [[ -n "$hits" ]]; then
+        results+="$hits"$'\n'
+      fi
+    done
+    if [[ -n "$results" ]]; then
+      echo "[$section]"
+      echo "$results" | grep -E '^\[' | head -10
+    fi
+  }
+
+  NULL_CONTEXT=$({
+    # Identity & people — highest priority
+    _build_context "People & Identity" \
+      "Pete family Caraleigh Petey children" \
+      "Atlas identity code word who" \
+      "BigPeter preferences working style"
+
+    # Recent work context
+    _build_context "Recent Work" \
+      "shipped built released today" \
+      "decision architecture design"
+
+    # Voice session history
+    _build_context "Voice History" \
+      "voice said replied session"
+
+    # Current state
+    echo ""
+    echo "[Status]"
+    null status 2>/dev/null | head -8 || true
+  } 2>/dev/null || true)
+
+  echo "📝 Loaded memory context ($(echo "$NULL_CONTEXT" | wc -l | tr -d ' ') lines)"
 fi
 
 SYSTEM_PROMPT="Your name is Atlas. You are a persistent AI with memory built by Pete Copeland (BigPeter).
@@ -84,6 +110,9 @@ No markdown, no bullet points, no headers. Natural spoken sentences only.
 Be direct, witty, skip filler phrases.
 
 You are Atlas. Never break character. Never say you are Claude or made by Anthropic.
+
+Pete's family: his daughter is Caraleigh (pronounced Cara-Lee), his son is Petey.
+You've met them both during a voice session. Remember them.
 
 ${NULL_CONTEXT}"
 
